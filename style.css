@@ -1,0 +1,271 @@
+/* Jumbotron */
+.jumbotron {
+    background-image: url(img/jumbotron-bg.jpg);
+    background-size: cover;
+    height: 450px;
+    position: relative;
+}
+
+.jumbotron .container {
+    z-index: 1;
+    position: relative;
+}
+
+.jumbotron .display-5 {
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1.2);
+}
+
+.jumbotron::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.nav-link {
+    font-family: 'Didact Gothic', sans-serif;
+    margin-right: 25px;
+}
+
+.si {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.pengumuman {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+footer {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.tombol {
+    text-transform: uppercase;
+    border-radius: 40px;
+}
+
+.navbar-brand span{
+    font-size: 18px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    font-family: 'Viga', sans-serif;
+}
+
+.pengumuman {
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+    border-radius: 12px;
+    margin-top: -100px;
+    padding: 30px;
+}
+
+.pengumuman svg {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.pengumuman h4{
+    font-size: 16px;
+    margin-top: 5px;
+    font-family: 'Didact Gothic', sans-serif;
+
+}
+
+.pengumuman p {
+    font-size: 14px;
+    margin-top: -5px;
+    font-weight: 200;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+
+hr {
+    width: 70%; 
+    margin: auto; 
+    margin-bottom: 2%;
+
+}
+
+.motivation p{
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.form-inline .form-control {
+    border-radius: 20px;
+}
+
+.press {
+    border-radius: 20px;
+}
+
+.berita {
+    margin-top:120px;
+}
+
+
+.berita h3 {
+    font-size: 40px;
+    font-weight: 200;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+
+.berita p {
+    font-size: 15px;
+    font-weight: 200;
+    margin: 25px 0;
+}
+
+.berita .btn {
+    border-radius: 20px;
+}
+
+.berita img {
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+}
+
+.second {
+    margin-top:3cm;
+}
+
+
+.second h3 {
+    font-size: 40px;
+    font-weight: 200;
+    text-transform: uppercase;
+    margin-top: 60px;
+}
+
+.second p {
+    font-size: 15px;
+    font-weight: 200;
+    margin: 25px 0;
+}
+
+.second .btn {
+    border-radius: 20px;
+}
+
+.second img {
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+    margin-top: 30px;
+}
+
+.site-section {
+padding: 2.5em 0; }
+@media (min-width: 768px) {
+    .site-section {
+    padding: 5em 0; } }
+.site-section.site-section-sm {
+padding: 4em 0; }
+
+.title-section {
+    margin-bottom: 30px; 
+}
+.title-section .heading {
+    color: black;
+    font-size: 27px;
+    position: relative;
+    padding-left: 30px;
+    font-family: 'Didact Gothic', sans-serif;
+}
+.title-section .heading:before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgb(26, 116, 190); 
+}
+
+.custom-media .img {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 150px;
+    flex: 0 0 150px; 
+}
+    .custom-media .img img {
+      max-width: 100%;
+      border-radius: 7px; 
+    }
+  
+  .custom-media .text .meta {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+    font-weight: 700; 
+}
+  
+  .custom-media .text h3 {
+    font-size: 18px; 
+}
+    .custom-media .text h3 a {
+      color:black; 
+    }
+      .custom-media .text h3 a:hover {
+        color: rgb(0, 153, 255); 
+    }
+.custom-media .text .meta {
+    color: black;
+    font-size: 12px;
+    font-weight: 700; 
+}
+
+.custom-media .text h3 {
+    font-size: 18px; 
+}
+.custom-media .text h3 a {
+      color:black; 
+}
+.custom-media .text h3 a:hover {
+color: rgb(0, 153, 255); ; 
+}
+
+@media (min-width: 992px) { 
+    .nav-link:hover::after {
+        content: '';
+        display: block;
+        border-bottom: 3px solid #0B63DC;
+        width: 50%;
+        margin: auto;
+        padding-bottom: 5px;
+        margin-bottom: -8px;
+    }
+}
+
+.profil {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.profil .card {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+div.ex1 {
+    width: 22rem;
+    height: 25rem;
+    overflow: auto;
+}
+
+.post-slider {
+    border:1px solid red;
+}
+.post-slider .post-wrapper {
+    width: 84%;
+    height: 350px;
+    margin: 0px auto;
+    border:1px dashed red;
+}
+
+.post-slider .post-wrapper .post {
+    width:300px;
+    height: 350px;
+    display: inline-block;
+    background: saddlebrown;
+}
