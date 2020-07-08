@@ -1,0 +1,70 @@
+.nav-link {
+    font-family: 'Didact Gothic', sans-serif;
+    margin-right: 25px;
+}
+
+.navbar-brand span{
+    font-size: 18px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    font-family: 'Viga', sans-serif;
+}
+
+@media (min-width: 992px) { 
+    .nav-link:hover::after {
+        content: '';
+        display: block;
+        border-bottom: 3px solid #0B63DC;
+        width: 50%;
+        margin: auto;
+        padding-bottom: 5px;
+        margin-bottom: -8px;
+    }
+
+.press {
+    border-radius: 20px;
+}
+
+.form-inline .form-control {
+    border-radius: 20px;
+}
+
+.contact {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.form-control {
+    height: 43px;
+    border-radius: 4px;
+    background: none;
+    border-width: 1px;
+}
+
+.custom-pagination a, .custom-pagination span {
+    display: inline-block;
+    color:grey;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    line-height: 40px; 
+}
+
+.custom-pagination a:hover {
+    background: grey;
+    color: #0B63DC; 
+}
+  
+  .custom-pagination span {
+
+    color: #0B63DC; 
+}
+
+.tombol {
+    text-transform: uppercase;
+    border-radius: 40px;
+}
+
+.press {
+    border-radius: 20px;
+}
