@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2020 at 02:17 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Waktu pembuatan: 05 Jul 2020 pada 13.31
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,10 +32,18 @@ CREATE TABLE `admin` (
   `Nama_admin` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`Id_admin`, `Nama_admin`) VALUES
+('0000000', 'admin1'),
+('0000001', 'admin2');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -48,13 +55,24 @@ CREATE TABLE `dosen` (
   `Tanggal_lahir` date NOT NULL,
   `Alamat` varchar(100) NOT NULL,
   `No_hp` char(15) NOT NULL,
-  `Foto` varchar(20) NOT NULL
+  `Foto` varchar(20) NOT NULL,
+  `Bidang_kajian` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `dosen`
+--
+
+INSERT INTO `dosen` (`NIP`, `Nama_dosen`, `Status_jabatan`, `Jenis_kelamin`, `Tempat_lahir`, `Tanggal_lahir`, `Alamat`, `No_hp`, `Foto`, `Bidang_kajian`) VALUES
+('100200300400', 'dosen1', 'statistika', 'p', 'Malang', '2020-07-01', 'Malang', '085331290605', '100200300400.jpg', ''),
+('200800700600', 'dosen2', 'ALJABAR', 'L', 'Banyuwangi', '2020-07-02', 'Banyuwangi', '085331290605', '200800700600.jpg', ''),
+('300900800200', 'dosen3', 'komputasi', 'L', 'Malang', '2020-07-03', 'Malang', '085331290605', '300900800200.png', ''),
+('400300800700', 'dosen4', '', 'L', 'Malang', '2020-07-04', 'JAKARTA', '085331290605', '400300800700.png', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -65,13 +83,21 @@ CREATE TABLE `mahasiswa` (
   `Tanggal_lahir` date NOT NULL,
   `Alamat` varchar(100) NOT NULL,
   `No_hp` char(15) NOT NULL,
-  `Foto` varchar(20) NOT NULL
+  `Foto` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`NIM`, `Nama_mahasiswa`, `Jenis_kelamin`, `Tempat_lahir`, `Tanggal_lahir`, `Alamat`, `No_hp`, `Foto`) VALUES
+('17610010', 'mahasiswa1', 'p', 'Malang', '2020-07-01', 'Malang', '085331290605', '17610010.png'),
+('17610040', 'mahasiswa4', 'L', 'Jakarta', '2020-07-04', 'Surabaya', '085331290605', '17610040.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
@@ -79,10 +105,19 @@ CREATE TABLE `roles` (
   `Role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `roles`
+--
+
+INSERT INTO `roles` (`Id_role`, `Role`) VALUES
+('1', 'admin'),
+('2', 'dosen'),
+('3', 'mahasiswa');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -95,64 +130,83 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`Username`, `Email`, `Password`, `Role`, `Status`, `Last_login`) VALUES
+('0000000', 'admin1@gmail.com', 'admin1', '1', 'aktif', '2020-07-05'),
+('0000001', 'admin2@gmail.com', 'admin2', '1', 'aktif', '2020-07-03'),
+('0000003', 'admin3@gmail.com', 'admin3', '1', 'aktif', '2020-07-04'),
+('0000004', 'admin4@gmail.com', 'admin4', '1', 'aktif', '2020-07-04'),
+('100200300400', 'dosen1@gmail.com', 'dosen1', '2', 'aktif', '2020-07-03'),
+('17610010', 'mahasiswa1@gmail.com', 'mahasiswa1', '3', 'aktif', '2020-07-03'),
+('17610020', 'mahasiswa2@gmail.com', 'mahasiswa2', '3', 'tidak aktif', '2020-07-03'),
+('17610030', 'mahasiswa3@gmail.com', 'mahasiswa3', '3', 'tidak aktif', '2020-07-03'),
+('17610040', 'mahasiswa4@gmail.com', 'mahasiswa4', '3', 'aktif', '2020-07-05'),
+('17610050', 'mahasiswa5@gmail.com', 'mahasiswa5', '3', 'aktif', '2020-07-04'),
+('200800700600', 'dosen2@gmail.com', 'dosen2', '2', 'aktif', '2020-07-03'),
+('300900800200', 'dosen3@gmail.com', 'dosen3', '2', 'aktif', '2020-07-03'),
+('400300800700', 'dosen4@gmail.com', 'dosen4', '2', 'aktif', '2020-07-03');
+
+--
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD UNIQUE KEY `Id_admin` (`Id_admin`);
 
 --
--- Indexes for table `dosen`
+-- Indeks untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD UNIQUE KEY `NIP` (`NIP`);
 
 --
--- Indexes for table `mahasiswa`
+-- Indeks untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD UNIQUE KEY `NIM` (`NIM`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`Id_role`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`Username`),
   ADD KEY `Role` (`Role`);
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `admin`
+-- Ketidakleluasaan untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`Id_admin`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `dosen`
+-- Ketidakleluasaan untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`NIP`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `mahasiswa`
+-- Ketidakleluasaan untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `users`
+-- Ketidakleluasaan untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`Role`) REFERENCES `roles` (`Id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
