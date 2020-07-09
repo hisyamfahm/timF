@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jul 2020 pada 13.31
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.2.31
+-- Generation Time: Jul 09, 2020 at 07:00 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`Id_admin`, `Nama_admin`) VALUES
@@ -43,7 +44,38 @@ INSERT INTO `admin` (`Id_admin`, `Nama_admin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dosen`
+-- Table structure for table `agenda`
+--
+
+CREATE TABLE `agenda` (
+  `Id_agenda` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Tanggal` date NOT NULL,
+  `Tempat` varchar(30) NOT NULL,
+  `Nama_agenda` varchar(100) NOT NULL,
+  `Dari` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `berita`
+--
+
+CREATE TABLE `berita` (
+  `Id_berita` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Tanggal` date NOT NULL,
+  `Judul` varchar(250) NOT NULL,
+  `Foto` varchar(100) NOT NULL,
+  `Dokumen` varchar(250) NOT NULL,
+  `Isi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -60,7 +92,7 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dosen`
+-- Dumping data for table `dosen`
 --
 
 INSERT INTO `dosen` (`NIP`, `Nama_dosen`, `Status_jabatan`, `Jenis_kelamin`, `Tempat_lahir`, `Tanggal_lahir`, `Alamat`, `No_hp`, `Foto`, `Bidang_kajian`) VALUES
@@ -72,7 +104,7 @@ INSERT INTO `dosen` (`NIP`, `Nama_dosen`, `Status_jabatan`, `Jenis_kelamin`, `Te
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -87,7 +119,7 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`NIM`, `Nama_mahasiswa`, `Jenis_kelamin`, `Tempat_lahir`, `Tanggal_lahir`, `Alamat`, `No_hp`, `Foto`) VALUES
@@ -97,7 +129,23 @@ INSERT INTO `mahasiswa` (`NIM`, `Nama_mahasiswa`, `Jenis_kelamin`, `Tempat_lahir
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `Id_pengumuman` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Tanggal` date NOT NULL,
+  `Judul` varchar(250) NOT NULL,
+  `Foto` varchar(100) NOT NULL,
+  `Dokumen` varchar(250) NOT NULL,
+  `Isi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -106,7 +154,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`Id_role`, `Role`) VALUES
@@ -117,7 +165,7 @@ INSERT INTO `roles` (`Id_role`, `Role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -130,7 +178,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`Username`, `Email`, `Password`, `Role`, `Status`, `Last_login`) VALUES
@@ -153,60 +201,121 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `Role`, `Status`, `Last_lo
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD UNIQUE KEY `Id_admin` (`Id_admin`);
 
 --
--- Indeks untuk tabel `dosen`
+-- Indexes for table `agenda`
+--
+ALTER TABLE `agenda`
+  ADD PRIMARY KEY (`Id_agenda`),
+  ADD KEY `Username` (`Username`);
+
+--
+-- Indexes for table `berita`
+--
+ALTER TABLE `berita`
+  ADD PRIMARY KEY (`Id_berita`),
+  ADD KEY `Username` (`Username`);
+
+--
+-- Indexes for table `dosen`
 --
 ALTER TABLE `dosen`
   ADD UNIQUE KEY `NIP` (`NIP`);
 
 --
--- Indeks untuk tabel `mahasiswa`
+-- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD UNIQUE KEY `NIM` (`NIM`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`Id_pengumuman`),
+  ADD KEY `Username` (`Username`);
+
+--
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`Id_role`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`Username`),
   ADD KEY `Role` (`Role`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `admin`
+-- AUTO_INCREMENT for table `agenda`
+--
+ALTER TABLE `agenda`
+  MODIFY `Id_agenda` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `berita`
+--
+ALTER TABLE `berita`
+  MODIFY `Id_berita` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  MODIFY `Id_pengumuman` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `admin`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`Id_admin`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `dosen`
+-- Constraints for table `agenda`
+--
+ALTER TABLE `agenda`
+  ADD CONSTRAINT `agenda_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `berita`
+--
+ALTER TABLE `berita`
+  ADD CONSTRAINT `berita_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dosen`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`NIP`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `mahasiswa`
+-- Constraints for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD CONSTRAINT `pengumuman_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`Role`) REFERENCES `roles` (`Id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
