@@ -67,7 +67,7 @@ $query = mysqli_query($koneksi,"SELECT * FROM mahasiswa inner join users on user
 						<th>Email</th>
 						<th>Role</th>
 						<th>Status</th>
-						<th>Last_login</th>
+						<th>Last login</th>
 						<th>Verifikasi</th></tr>
                         </thead>
                         <tbody>
@@ -75,7 +75,7 @@ $query = mysqli_query($koneksi,"SELECT * FROM mahasiswa inner join users on user
 		<?php 
 		include 'koneksi.php';
 		$no = 1;
-		$data = mysqli_query($koneksi,"select * from users");
+		$data = mysqli_query($koneksi,"select * from users join roles on users.role=roles.id_role");
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>
@@ -86,7 +86,11 @@ $query = mysqli_query($koneksi,"SELECT * FROM mahasiswa inner join users on user
 				<td><?php echo $d['Status']; ?></td>
 				<td><?php echo $d['Last_login']; ?></td>
 				<td>
-				<a><button class="btn btn-success type="submit" value="change" name=<?php echo $no; ?>>Aktifkan</button></a>
+				<a>
+                <?php if($d['Status']=="tidak aktif"){ ?>
+                <button class="btn btn-success" type="submit" value="change" name=<?php echo $no; ?>>Aktifkan</button></a>
+                <?php } else { ?>
+                <button class="btn btn-warning" type="submit" value="change" name=<?php echo $no; ?>>Non-Aktifkan</button></a><?php } ?>
 				<?php
 					include 'koneksi.php';
 					if (@$_POST[$no]){

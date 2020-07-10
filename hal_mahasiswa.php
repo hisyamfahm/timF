@@ -22,7 +22,12 @@
     <title>Sistem Informasi Jurusan Matematika</title>
   </head>
   <body>
-    
+    <?php
+    if(isset($_GET['pesan'])){
+      $msg = base64_decode($_GET['pesan']);
+      echo '<script type="text/javascript">alert("'.$msg.'");</script>';
+    }
+    ?>
     <!--Nabar-->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
@@ -37,7 +42,7 @@
             
             <ul class="navbar-nav mx-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="hal_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="hal_mahasiswa.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="#">Akademik <span class="sr-only">(current)</span></a>

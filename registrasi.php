@@ -55,7 +55,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-					<span class="login100-form-title-1">
+					<span class="login100-form-title-1" style="color: rgba(0,0,0,1);">
 						Sign Up
 					</span>
 				</div>
@@ -110,12 +110,12 @@
 	<div class="container-login200">
 		<div class="wrap-login100">
 			<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-				<span class="login100-form-title-1">
+				<span class="login100-form-title-1"  style="color: rgba(0,0,0,1);">
 					Sudah Registrasi? 
 				</span>
 			</div>
 			<div>
-				<p style="margin-left: 12px; font-size: 17px;">Silahkan Login ke Akun Anda di: <a href="login.php" style="font-size: 17px;"><u>login.id</u></a></p><br>
+				<p style="font-size: 17px;text-align: center;">Silahkan Login ke Akun Anda di <a href="login.php" style="font-size: 17px;"><u><b>login.id</b></u></a></p><br>
 			</div>
 		</div>
 	</div>

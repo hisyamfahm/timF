@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $role = $_SESSION['Role'];
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,11 +43,20 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Akademik <span class="sr-only">(current)</span></a>
               </li>
+              <?php if($role==1){ ?>
               <li class="nav-item active">
                 <a class="nav-link" href="verification.php">Verifikasi</a>
-              </li>
+              </li><?php } ?>
+              
 			  <li class="nav-item active">
-                <a class="nav-link" href="profil_admin.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
+              <?php if($role==1){ ?>
+                <a class="nav-link" href="profil_admin.php">Profil</a>
+              <?php } else if($role==2){ ?>  
+                <a class="nav-link" href="profil_dosen.php">Profil</a>
+              <?php } else if($role==3){ ?>  
+                <a class="nav-link" href="profil_mahasiswa.php">Profil</a>
+              <?php } else{ ?>  
+                <a class="nav-link" href="hal_admin.php">Profil</a><?php } ?>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-learning</a>

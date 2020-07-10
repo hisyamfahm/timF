@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['Login']) or !$_SESSION['Login']){
+    header ('location:login.php?pesan='.base64_encode("Anda belum login"));
+    die();
+  }
+  else if($_SESSION['Role']!=1){
+    header ('location:index.php?pesan='.base64_encode("Anda bukan Admin"));
+    die(); 
+  }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,15 +28,12 @@
     <title>Sistem Informasi Jurusan Matematika</title>
   </head>
   <body class="mt-5">
-  
-    
 <?php
-session_start();
-include 'koneksi.php';
-$Id_admin = $_SESSION['Username'];
-$sql = "select * FROM admin inner join users on users.Username=admin.Id_admin WHERE Id_admin = '$Id_admin'";
-$query = mysqli_query($koneksi, $sql);
-$row_query = mysqli_fetch_array($query);
+  include 'koneksi.php';
+  $Id_admin = $_SESSION['Username'];
+  $sql = "select * FROM admin inner join users on users.Username=admin.Id_admin WHERE Id_admin = '$Id_admin'";
+  $query = mysqli_query($koneksi, $sql);
+  $row_query = mysqli_fetch_array($query);
 ?>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -41,7 +49,7 @@ $row_query = mysqli_fetch_array($query);
           
         <ul class="navbar-nav mx-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="hal_admin.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Akademik <span class="sr-only">(current)</span></a>
@@ -50,7 +58,7 @@ $row_query = mysqli_fetch_array($query);
           <a class="nav-link" href="verification.php">Verifikasi</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="profil_admin.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
+            <a class="nav-link" href="profil_admin.php">Profil</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-learning</a>
@@ -59,7 +67,7 @@ $row_query = mysqli_fetch_array($query);
                 <a class="nav-link" href="profildosen_admin.php">Profil Dosen</a>
                 </li>
           <li class="nav-item active">
-            <a class="nav-link" href="login.php">Logout</a>
+            <a class="nav-link" href="logout.php">Logout</a>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

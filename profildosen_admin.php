@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['Login']) or !$_SESSION['Login']){
+    header ('location:login.php?pesan='.base64_encode("Anda belum login"));
+    die();
+  }
+  else if($_SESSION['Role']!=1){
+    header ('location:index.php?pesan='.base64_encode("Anda bukan Admin"));
+    die(); 
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +27,6 @@
 </head>
 <body>
 <?php
-session_start();
 include 'koneksi.php';
 $Username = $_SESSION['Username'];
 ?>
@@ -30,13 +40,13 @@ $Username = $_SESSION['Username'];
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="hal_admin.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                 <a class="nav-link" href="#">Akademik</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="profil_admin.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
+                    <a class="nav-link" href="profil_admin.php">Profil</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-Learning</a>

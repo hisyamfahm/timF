@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['Username'])) {
+	$msg = "Anda sudah login";
+	$msgEncoded = base64_encode($msg);
+	header ('location:index.php?pesan='.$msgEncoded);
+	die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +64,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-					<span class="login100-form-title-1">
+					<span class="login100-form-title-1" style="color: rgba(0,0,0,1);">
 						Sistem Informasi 
 						<br>Jurusan Matematika
 					</span>
@@ -63,23 +72,15 @@
 
 <?php
 if(isset($_GET['pesan'])){
-if($_GET['pesan']=="gagall"){
-echo "<div class='alert'>Maaf anda belum diverifikasi oleh admin !</div>";
-}
-}
-?>				
-<?php
-if(isset($_GET['pesan'])){
-if($_GET['pesan']=="gagal"){
-echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
-}
+	$msg = base64_decode($_GET['pesan']);
+    echo '<div class="alert">'.$msg.'</div>';
 }
 ?>
 				<div class="login100-form validate-form">
 				<form action="cek_login.php" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Enter username" required="required>
+						<input class="input100" type="text" name="username" placeholder="Enter username or Email" required="required>
 						<span class="focus-input100"></span>
 					</div>
 
@@ -112,12 +113,12 @@ echo "<div class='alert'>Username dan Password tidak sesuai !</div>";
 	<div class="container-login200">
 		<div class="wrap-login100">
 			<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-				<span class="login100-form-title-1">
+				<span class="login100-form-title-1" style="color: rgba(0,0,0,1);">
 					Belum Punya Akun? 
 				</span>
 			</div>
 			<div>
-				<p style="margin-left: 12px; font-size: 17px;">Silahkan Mendaftar Akun Anda di: <a href="registrasi.php" style="font-size: 17px;"><u>register.id</u></a></p><br>
+				<p style="font-size: 17px;text-align: center;">Silahkan Mendaftar Akun Anda di <a href="registrasi.php" style="font-size: 17px;"><u><b>register.id</b></u></a></p><br>
 			</div>
 		</div>
 	</div>

@@ -56,7 +56,7 @@ $row_query = mysqli_fetch_array($query);
                 <a class="nav-link" href="profildosen_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>">Profil Dosen</a>
                 </li>
           <li class="nav-item active">
-            <a class="nav-link" href="login.php">Logout</a>
+            <a class="nav-link" href="logout.php">Logout</a>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
