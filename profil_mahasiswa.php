@@ -29,7 +29,7 @@ $row_query = mysqli_fetch_array($query);
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand">
               <span>Mathematics</span>
           </a>
       <button class="navbar-toggler btn tombol" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,14 +129,14 @@ $row_query = mysqli_fetch_array($query);
             <label for="exampleInputPassword1">Alamat</label>
             <input type="text" name="alamat" class="form-control" id="exampleInputPassword1" value="<?php echo $row_query ['Alamat']?>">
           </div>
-          
           <div class="form-group">
             <label for="exampleInputPassword1">No hp</label>
             <input type="text" name="phone" class="form-control" id="exampleInputPassword1" value="<?php echo $row_query ['No_hp']?>">
           </div>
           <div class="form-group">
             <label for="exampleFormControlFile1">Change Picture</label>
-            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1" value="<?php echo $row_query ['Foto']?>">
+            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
+            <input type="hidden" name="oldphoto" class="form-control-file" id="exampleFormControlFile1" value="<?php echo $row_query['Foto'] ?>">
           </div>
           <button type="submit" class="btn btn-primary" value="change" name="update">Change Profile</button>		  
         </form>
@@ -152,15 +152,20 @@ if (@$_POST['update']) {
   $phone = @$_POST['phone'];
   
  if (isset ($_POST['update'])) {
-  
+   if(!empty($_FILES["photo"]["name"])) {
   $photo = @$_POST['photo'];
   $namafoto=$_FILES['photo']['name'];
-  $ext = end(explode('.', $namafoto));
+  $explode = explode('.',$namafoto);
+  $eksfile = strtolower(end($explode));
   $NIM = $_SESSION['Username'];
-  $name = $NIM. '.' . $ext;
+  $name = $NIM. '.' . $eksfile;
   $lokasifoto=$_FILES['photo']['tmp_name'];
   $file_store = "foto/".$name;
   move_uploaded_file($lokasifoto, $file_store);
+ } else {
+  $name = @$_POST['oldphoto'];
+  $NIM = $_SESSION['Username'];
+}
  }
   
 $NIM = $_SESSION['Username'];
@@ -172,23 +177,13 @@ if($count == 0) {
 $sql= "INSERT INTO mahasiswa (NIM, Nama_mahasiswa, Jenis_kelamin, Tempat_lahir, Tanggal_lahir, Alamat, No_hp, Foto) 
 VALUES ('$NIM','$nama','$kelamin','$tempat','$tanggal','$alamat','$phone','$name')" ;
 }else{
-if($name=="" || empty($name)){
-$sql="UPDATE mahasiswa SET Nama_mahasiswa='$nama', Jenis_kelamin='$kelamin', Tempat_lahir='$tempat', 
-Tanggal_lahir='$tanggal', Alamat='$alamat', No_hp='$phone' WHERE NIM = '$NIM'";
-}else{
-$sql="UPDATE mahasiswa SET Nama_mahasiswa='$nama', Jenis_kelamin='$kelamin', Tempat_lahir='$tempat', 
-Tanggal_lahir='$tanggal', Alamat='$alamat', No_hp='$phone', Foto='$name' WHERE NIM = '$NIM'";
-}
+  $sql = "UPDATE mahasiswa SET Nama_mahasiswa='$nama', Jenis_kelamin='$kelamin', Tempat_lahir='$tempat', 
+  Tanggal_lahir='$tanggal', Alamat='$alamat', No_hp='$phone', Foto='$name' WHERE NIM = '$NIM'";
 }
   mysqli_query($connect, $sql) or die('Gagal menyimpan data');
   echo 'data tersimpan';
 
 ?>
-<script>
-  alert("data tersimpan");
-  window.location.href="profil_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>"
-
-</script>
 <?php
 }
  ?>

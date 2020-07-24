@@ -21,24 +21,12 @@
         margin-bottom: -8px;
     }
 
-.press {
-    border-radius: 20px;
-}
 
-.form-inline .form-control {
-    border-radius: 20px;
-}
 
 .contact {
     font-family: 'Didact Gothic', sans-serif;
 }
 
-.form-control {
-    height: 43px;
-    border-radius: 4px;
-    background: none;
-    border-width: 1px;
-}
 
 .custom-pagination a, .custom-pagination span {
     display: inline-block;
@@ -58,13 +46,4 @@
   .custom-pagination span {
 
     color: #0B63DC; 
-}
-
-.tombol {
-    text-transform: uppercase;
-    border-radius: 40px;
-}
-
-.press {
-    border-radius: 20px;
 }

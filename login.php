@@ -64,7 +64,7 @@ if(isset($_SESSION['Username'])) {
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-					<span class="login100-form-title-1" style="color: rgba(0,0,0,1);">
+					<span class="login100-form-title-1">
 						Sistem Informasi 
 						<br>Jurusan Matematika
 					</span>
@@ -113,7 +113,7 @@ if(isset($_GET['pesan'])){
 	<div class="container-login200">
 		<div class="wrap-login100">
 			<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-				<span class="login100-form-title-1" style="color: rgba(0,0,0,1);">
+				<span class="login100-form-title-1">
 					Belum Punya Akun? 
 				</span>
 			</div>

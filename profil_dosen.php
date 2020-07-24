@@ -26,7 +26,6 @@ $query = mysqli_query($koneksi,"SELECT * FROM dosen inner join users on users.Us
 $row_query = mysqli_fetch_array($query);
 ?>
 
-
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
           <a class="navbar-brand" href="#">
@@ -41,19 +40,19 @@ $row_query = mysqli_fetch_array($query);
         <ul class="navbar-nav mx-auto">
           <li class="nav-item active">
 		  
-            <a class="nav-link" href="hal_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php?Username=<?php echo $_SESSION['Username'];?>">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Akademik <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="profil_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
+            <a class="nav-link" href="profil_dosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-learning</a>
           </li>
 		  		<li class="nav-item active">
-                <a class="nav-link" href="profildosen_dosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil Dosen</a>
+                <a class="nav-link" href="profildosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil Dosen</a>
                 </li>
           <li class="nav-item active">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -103,7 +102,6 @@ $row_query = mysqli_fetch_array($query);
         </div>
 
 		<form class="login100-form validate-form" method="post" action="" enctype = "multipart/form-data">
-		
 		  <div class="form-group">
             <label for="exampleInputPassword1">NIP</label>
             <input type="text" class="form-control" id="exampleInputPassword1" readonly value= "<?php echo $_SESSION['Username'];?>">
@@ -135,15 +133,15 @@ $row_query = mysqli_fetch_array($query);
 		  <div class="form-group">
             <label for="exampleInputPassword1">Alamat</label>
             <input type="text" name="alamat" class="form-control" id="exampleInputPassword1" value="<?php echo $row_query ['Alamat']?>">
-          </div>
-          
+          </div>          
           <div class="form-group">
             <label for="exampleInputPassword1">No hp</label>
             <input type="text" name="phone" class="form-control" id="exampleInputPassword1" value="<?php echo $row_query ['No_hp']?>">
           </div>
           <div class="form-group">
             <label for="exampleFormControlFile1">Change Picture</label>
-            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1" value="<?php echo $row_query ['Foto']?>">
+            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
+            <input type="hidden" name="oldphoto" class="form-control-file" id="exampleFormControlFile1" value="<?php echo $row_query['Foto'] ?>">
           </div>
           <button type="submit" class="btn btn-primary" value="change" name="update">Change Profile</button>		  
         </form>
@@ -161,15 +159,20 @@ if (@$_POST['update']) {
   $bidang = @$_POST['bidang'];
   
  if (isset ($_POST['update'])) {
-  
+   if(!empty($_FILES["photo"]["name"])) {
   $photo = @$_POST['photo'];
   $namafoto=$_FILES['photo']['name'];
-  $ext = end(explode('.', $namafoto));
+  $explode = explode('.',$namafoto);
+  $eksfile = strtolower(end($explode));
   $NIP = $_SESSION['Username'];
-  $name = $NIP. '.' . $ext;
+  $name = $NIP. '.' . $eksfile;
   $lokasifoto=$_FILES['photo']['tmp_name'];
   $file_store = "foto/".$name;
   move_uploaded_file($lokasifoto, $file_store);
+ } else {
+  $name = @$_POST['oldphoto'];
+  $NIP = $_SESSION['Username'];
+}
  }
   
 $NIP = $_SESSION['Username'];
@@ -188,11 +191,6 @@ Tanggal_lahir='$tanggal', Alamat='$alamat', No_hp='$phone', Foto='$name', Bidang
   echo 'data tersimpan';
 
 ?>
-<script>
-  alert("data tersimpan");
-  window.location.href="profil_dosen.php?Username=<?php echo $_SESSION['Username'];?>"
-
-</script>
 <?php
 }
  ?>

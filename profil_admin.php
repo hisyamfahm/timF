@@ -49,7 +49,7 @@
           
         <ul class="navbar-nav mx-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php?Username=<?php echo $_SESSION['Username'];?>">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Akademik <span class="sr-only">(current)</span></a>
@@ -58,13 +58,13 @@
           <a class="nav-link" href="verification.php">Verifikasi</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="profil_admin.php">Profil</a>
+            <a class="nav-link" href="profil_admin.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-learning</a>
           </li>
 				<li class="nav-item active">
-                <a class="nav-link" href="profildosen_admin.php">Profil Dosen</a>
+                <a class="nav-link" href="profildosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil Dosen</a>
                 </li>
           <li class="nav-item active">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -112,21 +112,9 @@ include 'database.php';
 
 if (@$_POST['update']) {
   $nama = @$_POST['nama'];
-  
-  //mengambil id user
- //$sql= "SELECT Username as Id_admin from users WHERE Id_admin = '$Id_admin'";
-  //$hasil=mysqli_query($connect, $sql);
-  //$row=mysqli_fetch_array($hasil);
-  //$Id_admin=$row['Id_admin'];
 
 if (!empty($nama))
 { 
-  //menyimpan admin ke tabel admin
-  //$sql= "INSERT INTO admin (Id_admin, Nama_admin) VALUES ('$Id_admin','$nama')";
-  //UPDATE
-  //$Id_admin = $_SESSION['Username'];
-  //$sql="UPDATE admin SET Nama_admin='$nama' WHERE Id_admin = '$Id_admin'";
-  //$sql= "INSERT INTO admin SET Nama_admin='$nama';UPDATE admin SET Nama_admin='$nama' WHERE Id_admin = '$Id_admin';";
 $Id_admin = $_SESSION['Username'];
 $sql = "select * FROM admin inner join users on users.Username=admin.Id_admin WHERE Id_admin = '$Id_admin'";
 $query = mysqli_query($koneksi, $sql);

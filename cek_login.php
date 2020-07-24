@@ -38,7 +38,7 @@ if(isset($_POST['login'])){
 			} else{
 				header("location:login.php?pesan=gagal");
 			}	
-		} else{
+		}else{
 			header ("location:login.php?pesan=".base64_encode("Maaf anda belum diverifikasi oleh admin !"));
 		}
 	} else{

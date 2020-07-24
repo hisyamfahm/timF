@@ -61,20 +61,20 @@
               <?php if($_SESSION['Login']){ ?>
               <li class="nav-item active">
               <?php if($role==1){ ?>
-                <a class="nav-link" href="profil_admin.php">Profil</a>
+                <a class="nav-link" href="profil_admin.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
               <?php } else if($role==2){ ?>  
-                <a class="nav-link" href="profil_dosen.php">Profil</a>
+                <a class="nav-link" href="profil_dosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
               <?php } else if($role==3){ ?>  
-                <a class="nav-link" href="profil_mahasiswa.php">Profil</a>
+                <a class="nav-link" href="profil_mahasiswa.php?Username=<?php echo $_SESSION['Username'];?>">Profil</a>
               <?php } else{ ?>  
-                <a class="nav-link" href="hal_admin.php">Profil</a><?php } ?>
+                <a class="nav-link" href="index.php">Profil</a><?php } ?>
               </li><?php } ?>
               <li class="nav-item active">
                 <a class="nav-link" href="https://elearning.uin-malang.ac.id/">E-learning</a>
               </li>
-              <?php if($_SESSION['Login'] and $role==1){ ?>
+              <?php if($_SESSION['Login']){ ?>
               <li class="nav-item active">
-                <a class="nav-link" href="profildosen_admin.php">Profil Dosen</a>
+                <a class="nav-link" href="profildosen.php?Username=<?php echo $_SESSION['Username'];?>">Profil Dosen</a>
               </li><?php } ?>
               <?php if($_SESSION['Login']){ ?>
               <li class="nav-item active">
@@ -105,13 +105,16 @@
             <div class="col-10 pengumuman bg-light text-dark">
                 <div class="row">
                     <div class="col-lg">
-                      <svg class="bi bi-newspaper float-left"  viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					                      <svg class="bi bi-newspaper float-left"  viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M0 2A1.5 1.5 0 0 1 1.5.5h11A1.5 1.5 0 0 1 14 2v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 0 14V2zm1.5-.5A.5.5 0 0 0 1 2v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5h-11z"/>
                         <path fill-rule="evenodd" d="M15.5 3a.5.5 0 0 1 .5.5V14a1.5 1.5 0 0 1-1.5 1.5h-3v-1h3a.5.5 0 0 0 .5-.5V3.5a.5.5 0 0 1 .5-.5z"/>
                         <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
                       </svg>
-                        <h4><a href="announcement.html" class="text-dark">Announcement</a></h4>
-                        <p>Klik di sini untuk melihat pengumuman.</p>
+		      <?php if($_SESSION['Login'] and $role==1){ ?>
+                <a href="insert_pengumuman.php">+ TAMBAH PENGUMUMAN</a>
+              <?php } ?>
+                        <h4><a href="pengumuman.php" class="text-dark">Announcement</a></h4>
+                        <p>Klik di sini untuk melihat semua pengumuman.</p>
                     </div>
                     <div class="col-lg">
                       <svg class="bi bi-calendar-date float-left" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -119,15 +122,18 @@
                         <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                         <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                       </svg>
-                      <h4><a href="agenda.html" class="text-dark">Agenda</a></h4>
-                      <p>Klik di sini untuk melihat agenda terdekat.</p>
+			<?php if($_SESSION['Login'] and $role==1){ ?>
+                <a href="insert_agenda.php">+ TAMBAH AGENDA</a>
+              <?php } ?>
+                      <h4><a href="agenda.php" class="text-dark">Agenda</a></h4>
+                      <p>Klik di sini untuk melihat semua agenda.</p>
                     </div>
                     <div class="col-lg">
                       <svg class="bi bi-phone float-left" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M11 1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
                         <path fill-rule="evenodd" d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                       </svg>
-                      <h4><a href="contact.html" class="text-dark">Contact</a></h4>
+                      <h4><a href="contact.php" class="text-dark">Contact</a></h4>
                       <p>Klik di sini untuk menghubungi jurusan.</p>
                     </div>
                 </div>
@@ -159,14 +165,6 @@
                       </div>
                   </div>
               </div>
-              <div class="col-md-3">
-                  <div class="card">
-                      <img class="card-img-top" src="img/students.png" alt="Card image cap">
-                      <div class="card-body">
-                      <h5 class="card-title"><a href="#" class="text-dark">Students Activity</a></h5>
-                      </div>
-                  </div>
-              </div>
           </div>
           <div class="row mb-4 justify-content-center">
               <div class="col-md-3">
@@ -191,58 +189,20 @@
        <!--Berita-->
        <section class="bg-light">
         <div class="container-md">
-          <div class="row berita">
-            <div class="col-lg-6">
-              <img src="img/panitia.png" class="img-fluid">
-            </div>
-            <div class="col-lg-5">
-              <h3>Kesuksesan Dibalik FGD HMJ 2020</h3>
-              <p>"KOMET merupakan ajang kompetisi matematika yang diselenggarakan
-                oleh Jurusan Matematika UIN Maliki Malang....""
-              </p>
-              <a href="#" class="btn btn-primary">Read more</a>
-            </div>
-          </div>
         </div>
         <div class="container site-section md">
-          <div class="row">
+		     <div class="row">
             <div class="col-6 title-section">
-              <h2 class="heading"><a href="#" class="text-dark">Student Activity</a></h2>
+					      <?php if($_SESSION['Login'] and $role==1){ ?>
+                <h2 class="heading"> <a href="insert_berita.php" class="text-dark">+ TAMBAH BERITA</a> </h2>
+              <?php } ?>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="custom-media d-flex">
-                <div class="img mr-4">
-                <img src="img/final.jpeg" class="img-fluid">
-                </div>
-                <div class="text">
-                <span class="meta">May 20,2020</span>
-                <h3 class="mb-4">
-                  Final Komet Yang Berlangsung Seru.
-                </h3>
-                <p>
-                  Lorem ipsum dolor sit.
-                </p>
-                <p><a href="#">Read More</a></p>
-              </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-            <div class="custom-media d-flex">
-              <div class="img mr-4">
-                <img src="img/panitia.jpeg" class="img-fluid">
-              </div>
-              <div class="text">
-                <span class="meta">May 20, 2020</span>
-                <h3 class="mb-4">Final Komet Yang Berlangsung Seru.
-                </h3>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <p><a href="activity.html">Read More</a></p>
-              </div>
+		  <div class="row">
+            <div class="col-6 title-section">
+              <h2 class="heading"><a href="berita.php" class="text-dark">News</a></h2>
             </div>
           </div>
-        </div>
       </div>
   </section>
   <!--Profil Jurusan-->
